@@ -1,3 +1,5 @@
+using WinFormsApp1.Forms;
+
 namespace WinFormsApp1
 {
     public partial class Form1 : Form
@@ -9,7 +11,8 @@ namespace WinFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //TEST
+            AddForm addForm = new AddForm();
+            addForm.Show();
         }
     }
 }
