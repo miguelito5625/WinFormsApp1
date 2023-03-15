@@ -1,3 +1,5 @@
+using WinFormsApp1.Controllers.DataBase;
+
 namespace WinFormsApp1
 {
     internal static class Program
@@ -12,6 +14,14 @@ namespace WinFormsApp1
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
+
+            Alumno alumno = new Alumno();
+            List<Alumno> alumnos = alumno.ListarAlumnos();
+            foreach (Alumno a in alumnos)
+            {
+                Console.WriteLine("Nombres: {0}, Apellidos: {1}, Edad: {2}", a.Nombres, a.Apellidos, a.Edad);
+            }
+            Console.ReadKey();
         }
     }
 }

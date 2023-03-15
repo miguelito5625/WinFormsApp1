@@ -13,6 +13,9 @@ namespace WinFormsApp1.Controllers.DataBase
     {
 
         private string cadenaDeConexion;
+        public string Nombres { get; set; }
+        public string Apellidos { get; set; }
+        public int Edad { get; set; }
 
         public Alumno()
         {
@@ -39,6 +42,34 @@ namespace WinFormsApp1.Controllers.DataBase
                 MessageBox.Show("Ocurrió un error al agregar el alumno: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        public List<Alumno> ListarAlumnos()
+        {
+            List<Alumno> alumnos = new List<Alumno>();
+            try
+            {
+                using (SqlConnection conexion = new SqlConnection(cadenaDeConexion))
+                {
+                    conexion.Open();
+                    SqlCommand comando = new SqlCommand("SELECT Nombres, Apellidos, Edad FROM Alumnos", conexion);
+                    SqlDataReader reader = comando.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Alumno alumno = new Alumno();
+                        alumno.Nombres = reader.GetString(0);
+                        alumno.Apellidos = reader.GetString(1);
+                        alumno.Edad = reader.GetInt32(2);
+                        alumnos.Add(alumno);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error al listar los alumnos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return alumnos;
+        }
+
 
 
     }
