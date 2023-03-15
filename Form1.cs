@@ -12,7 +12,17 @@ namespace WinFormsApp1
         private void button1_Click(object sender, EventArgs e)
         {
             AddForm addForm = new AddForm();
-            addForm.Show();
+            if ((Application.OpenForms["AddForm"] as AddForm) != null)
+            {
+                //Form is already open
+                addForm.Activate();
+            }
+            else
+            {
+                // Form is not open
+                addForm.Show();
+            }
+            
         }
     }
 }

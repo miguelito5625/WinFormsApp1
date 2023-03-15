@@ -41,9 +41,10 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(125, 9);
+            label1.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(75, 9);
             label1.Name = "label1";
-            label1.Size = new Size(96, 15);
+            label1.Size = new Size(179, 30);
             label1.TabIndex = 0;
             label1.Text = "Registro Alumno";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -108,6 +109,7 @@
             buttonSave.TabIndex = 7;
             buttonSave.Text = "Guardar";
             buttonSave.UseVisualStyleBackColor = true;
+            buttonSave.Click += buttonSave_Click;
             // 
             // AddForm
             // 
@@ -122,6 +124,7 @@
             Controls.Add(textBoxName);
             Controls.Add(label2);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.Fixed3D;
             Name = "AddForm";
             Text = "AddForm";
             ResumeLayout(false);
