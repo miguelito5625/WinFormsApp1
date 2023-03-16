@@ -12,7 +12,6 @@ namespace WinFormsApp1.Controllers.DataBase
     internal class Alumno
     {
 
-        private string cadenaDeConexion;
         public int Id { get; set; }
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
@@ -20,59 +19,69 @@ namespace WinFormsApp1.Controllers.DataBase
 
         public Alumno()
         {
-            cadenaDeConexion = "Data Source=192.168.1.111;Initial Catalog=colegio;User ID=sa;Password=Mariobross5625.";
         }
 
-
-        public void AgregarAlumno(string nombres, string apellidos, int edad)
+        public string GuardarAlumno(string nombres, string apellidos, int edad)
         {
+            string mensaje = "";
             try
             {
-                using (SqlConnection conexion = new SqlConnection(cadenaDeConexion))
+                using (var conexion = new ConexionBD().AbrirConexion())
                 {
-                    conexion.Open();
-                    SqlCommand comando = new SqlCommand("INSERT INTO Alumnos (Nombres, Apellidos, Edad) VALUES (@Nombres, @Apellidos, @Edad)", conexion);
-                    comando.Parameters.AddWithValue("@Nombres", nombres);
-                    comando.Parameters.AddWithValue("@Apellidos", apellidos);
-                    comando.Parameters.AddWithValue("@Edad", edad);
-                    comando.ExecuteNonQuery();
-                }
-                MessageBox.Show("Guardado");
+                    var query = "INSERT INTO Alumnos (Nombres, Apellidos, Edad) VALUES (@Id, @Nombres, @Apellidos, @Edad)";
+                    using (var comando = new SqlCommand(query, conexion))
+                    {
+                        comando.Parameters.AddWithValue("@Nombres", nombres);
+                        comando.Parameters.AddWithValue("@Apellidos", apellidos);
+                        comando.Parameters.AddWithValue("@Edad", edad);
 
+                        comando.ExecuteNonQuery();
+                    }
+                }
+                mensaje = $"Alumno guardado: ID: Nombres: {nombres}, Apellidos: {apellidos}, Edad: {edad}";
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-                MessageBox.Show("Ocurrió un error al agregar el alumno: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                mensaje = $"Error al guardar el alumno: {ex.Message}";
             }
+            return mensaje;
         }
+
 
         public List<Alumno> ListarAlumnos()
         {
-            List<Alumno> listaAlumnos = new List<Alumno>();
+            var listaAlumnos = new List<Alumno>();
             try
             {
-                using (SqlConnection conexion = new SqlConnection(cadenaDeConexion))
+                using (var conexion = new ConexionBD().AbrirConexion())
                 {
-                    conexion.Open();
-                    SqlCommand comando = new SqlCommand("SELECT Id, Nombres, Apellidos, Edad FROM Alumnos", conexion);
-                    SqlDataReader reader = comando.ExecuteReader();
-                    while (reader.Read())
+                    var query = "SELECT * FROM Alumnos";
+                    using (var comando = new SqlCommand(query, conexion))
                     {
-                        Alumno alumno = new Alumno();
-                        alumno.Id = Convert.ToInt32(reader["Id"]);
-                        alumno.Nombres = reader["Nombres"].ToString();
-                        alumno.Apellidos = reader["Apellidos"].ToString();
-                        alumno.Edad = Convert.ToInt32(reader["Edad"]);
-                        listaAlumnos.Add(alumno);
+                        using (var reader = comando.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                var alumno = new Alumno()
+                                {
+                                    Id = Convert.ToInt32(reader["Id"]),
+                                    Nombres = Convert.ToString(reader["Nombres"]),
+                                    Apellidos = Convert.ToString(reader["Apellidos"]),
+                                    Edad = Convert.ToInt32(reader["Edad"])
+                                };
+                                listaAlumnos.Add(alumno);
+                            }
+                        }
                     }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-                MessageBox.Show("Ocurrió un error al listar los alumnos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw new Exception($"No se pudo obtener los alumnos: {ex.Message}");
             }
             return listaAlumnos;
         }
+
 
 
 

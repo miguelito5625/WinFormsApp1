@@ -16,14 +16,30 @@ namespace WinFormsApp1.Forms
         public ListForm()
         {
             InitializeComponent();
-
-            Alumno alumno = new Alumno();
-            List<Alumno> listaDeAlumnos = alumno.ListarAlumnos();
-            BindingSource bindingSource = new BindingSource();
-            bindingSource.DataSource = listaDeAlumnos;
-            dataGridView1.DataSource = bindingSource;
+            CargarDatosAlumnos();
 
         }
+
+        private void CargarDatosAlumnos()
+        {
+            try
+            {
+                var listaAlumnos = new Alumno().ListarAlumnos();
+                if (listaAlumnos != null && listaAlumnos.Count > 0)
+                {
+                    dataGridView1.DataSource = listaAlumnos;
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo obtener la lista de alumnos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
