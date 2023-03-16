@@ -37,6 +37,8 @@ namespace WinFormsApp1.Controllers.DataBase
                     comando.Parameters.AddWithValue("@Edad", edad);
                     comando.ExecuteNonQuery();
                 }
+                MessageBox.Show("Guardado");
+
             }
             catch (Exception ex)
             {

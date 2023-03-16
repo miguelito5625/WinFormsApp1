@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinFormsApp1.Controllers.DataBase;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WinFormsApp1.Forms
 {
@@ -40,10 +41,11 @@ namespace WinFormsApp1.Forms
         private void buttonSave_Click(object sender, EventArgs e)
         {
             Alumno alumno = new Alumno();
-            alumno.AgregarAlumno("Juan", "Pérez", 25); // Agrega un nuevo alumno
-//            alumno.Actualizar(1, "Juan", "Pérez", 26); // Actualiza el alumno con Id=1
-  //          alumno.Eliminar(2); // Elimina el alumno con Id=2
-    //        DataTable dt = alumno.Buscar(); // Devuelve todos los alumnos en un DataTable
+            string name = textBoxName.Text;
+            string lname = textBoxLastName.Text;
+            int age = Convert.ToInt32(textBoxAge.Text);
+
+            alumno.AgregarAlumno(name, lname, age); // Agrega un nuevo alumno
 
         }
     }

@@ -12,17 +12,8 @@ namespace WinFormsApp1
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
-           
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
-
-           /* Alumno alumno = new Alumno();
-            List<Alumno> alumnos = alumno.ListarAlumnos();
-            foreach (Alumno a in alumnos)
-            {
-                Console.WriteLine("Nombres: {0}, Apellidos: {1}, Edad: {2}", a.Nombres, a.Apellidos, a.Edad);
-            }
-            Console.ReadKey();*/
 
         }
     }
