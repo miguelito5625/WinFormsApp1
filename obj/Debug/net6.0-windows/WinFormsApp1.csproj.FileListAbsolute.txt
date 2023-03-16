@@ -24,3 +24,4 @@ C:\Users\migue\source\repos\WinFormsApp1\bin\Debug\net6.0-windows\runtimes\win-x
 C:\Users\migue\source\repos\WinFormsApp1\bin\Debug\net6.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\migue\source\repos\WinFormsApp1\bin\Debug\net6.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\migue\source\repos\WinFormsApp1\obj\Debug\net6.0-windows\WinFormsApp1.csproj.CopyComplete
+C:\Users\migue\source\repos\WinFormsApp1\obj\Debug\net6.0-windows\WinFormsApp1.Forms.ListForm.resources

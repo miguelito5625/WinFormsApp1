@@ -22,7 +22,13 @@ namespace WinFormsApp1
                 // Form is not open
                 addForm.Show();
             }
-            
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ListForm listForm = new ListForm();
+            listForm.Show();
         }
     }
 }

@@ -13,6 +13,7 @@ namespace WinFormsApp1.Controllers.DataBase
     {
 
         private string cadenaDeConexion;
+        public int Id { get; set; }
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
         public int Edad { get; set; }
@@ -45,21 +46,22 @@ namespace WinFormsApp1.Controllers.DataBase
 
         public List<Alumno> ListarAlumnos()
         {
-            List<Alumno> alumnos = new List<Alumno>();
+            List<Alumno> listaAlumnos = new List<Alumno>();
             try
             {
                 using (SqlConnection conexion = new SqlConnection(cadenaDeConexion))
                 {
                     conexion.Open();
-                    SqlCommand comando = new SqlCommand("SELECT Nombres, Apellidos, Edad FROM Alumnos", conexion);
+                    SqlCommand comando = new SqlCommand("SELECT Id, Nombres, Apellidos, Edad FROM Alumnos", conexion);
                     SqlDataReader reader = comando.ExecuteReader();
                     while (reader.Read())
                     {
                         Alumno alumno = new Alumno();
-                        alumno.Nombres = reader.GetString(0);
-                        alumno.Apellidos = reader.GetString(1);
-                        alumno.Edad = reader.GetInt32(2);
-                        alumnos.Add(alumno);
+                        alumno.Id = Convert.ToInt32(reader["Id"]);
+                        alumno.Nombres = reader["Nombres"].ToString();
+                        alumno.Apellidos = reader["Apellidos"].ToString();
+                        alumno.Edad = Convert.ToInt32(reader["Edad"]);
+                        listaAlumnos.Add(alumno);
                     }
                 }
             }
@@ -67,8 +69,9 @@ namespace WinFormsApp1.Controllers.DataBase
             {
                 MessageBox.Show("Ocurrió un error al listar los alumnos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            return alumnos;
+            return listaAlumnos;
         }
+
 
 
 
