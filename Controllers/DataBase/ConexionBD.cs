@@ -14,7 +14,8 @@ namespace WinFormsApp1.Controllers.DataBase
 
         public ConexionBD()
         {
-            string cadenaConexion = "Data Source=192.168.1.111;Initial Catalog=colegio;User ID=sa;Password=Mariobross5625.";
+            //string cadenaConexion = "Data Source=192.168.1.111;Initial Catalog=colegio;User ID=sa;Password=Mariobross5625.";
+            string cadenaConexion = "Data Source=(LocalDB)\\MSSQLLocalDB; AttachDbFilename=C:\\Users\\marchila\\source\\repos\\WinFormsApp1\\ColegioBD.mdf;";
             conexion = new SqlConnection(cadenaConexion);
         }
         public SqlConnection AbrirConexion()

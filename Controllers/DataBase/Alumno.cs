@@ -55,7 +55,7 @@ namespace WinFormsApp1.Controllers.DataBase
             {
                 using (var conexion = new ConexionBD().AbrirConexion())
                 {
-                    var query = "SELECT * FROM Alumnoxs";
+                    var query = "SELECT * FROM Alumnos";
                     using (var comando = new SqlCommand(query, conexion))
                     {
                         using (var reader = comando.ExecuteReader())
