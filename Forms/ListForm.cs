@@ -16,8 +16,13 @@ namespace WinFormsApp1.Forms
         public ListForm()
         {
             InitializeComponent();
-            CargarDatosAlumnos();
+            this.Load += ListForm_Load; // suscribirse al evento Load
 
+        }
+
+        private void ListForm_Load(object sender, EventArgs e)
+        {
+            CargarDatosAlumnos();
         }
 
         private void CargarDatosAlumnos()
@@ -32,6 +37,7 @@ namespace WinFormsApp1.Forms
                 else
                 {
                     MessageBox.Show("No se pudo obtener la lista de alumnos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.Close();
                 }
             }
             catch (Exception ex)

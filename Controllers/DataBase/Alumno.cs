@@ -28,7 +28,7 @@ namespace WinFormsApp1.Controllers.DataBase
             {
                 using (var conexion = new ConexionBD().AbrirConexion())
                 {
-                    var query = "INSERT INTO Alumnos (Nombres, Apellidos, Edad) VALUES (@Id, @Nombres, @Apellidos, @Edad)";
+                    var query = "INSERT INTO Alumnos (Nombres, Apellidos, Edad) VALUES (@Nombres, @Apellidos, @Edad)";
                     using (var comando = new SqlCommand(query, conexion))
                     {
                         comando.Parameters.AddWithValue("@Nombres", nombres);
@@ -55,7 +55,7 @@ namespace WinFormsApp1.Controllers.DataBase
             {
                 using (var conexion = new ConexionBD().AbrirConexion())
                 {
-                    var query = "SELECT * FROM Alumnos";
+                    var query = "SELECT * FROM Alumnoxs";
                     using (var comando = new SqlCommand(query, conexion))
                     {
                         using (var reader = comando.ExecuteReader())

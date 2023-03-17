@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -13,10 +14,9 @@ namespace WinFormsApp1.Controllers.DataBase
 
         public ConexionBD()
         {
-            string cadenaConexion = "Data Source=SERVIDOR;Initial Catalog=MI_BASE_DE_DATOS;Integrated Security=True";
+            string cadenaConexion = "Data Source=192.168.1.111;Initial Catalog=colegio;User ID=sa;Password=Mariobross5625.";
             conexion = new SqlConnection(cadenaConexion);
         }
-
         public SqlConnection AbrirConexion()
         {
             if (conexion.State == System.Data.ConnectionState.Closed)

@@ -45,7 +45,8 @@ namespace WinFormsApp1.Forms
             string lname = textBoxLastName.Text;
             int age = Convert.ToInt32(textBoxAge.Text);
 
-            alumno.AgregarAlumno(name, lname, age); // Agrega un nuevo alumno
+            string mensaje = alumno.GuardarAlumno(name, lname, age); // Agrega un nuevo alumno
+            MessageBox.Show(mensaje);
 
         }
     }
