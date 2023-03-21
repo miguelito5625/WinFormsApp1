@@ -28,59 +28,90 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
-            button2 = new Button();
-            label1 = new Label();
+            menuStrip1 = new MenuStrip();
+            archivoToolStripMenuItem = new ToolStripMenuItem();
+            salirToolStripMenuItem = new ToolStripMenuItem();
+            alumnosToolStripMenuItem = new ToolStripMenuItem();
+            crearToolStripMenuItem = new ToolStripMenuItem();
+            listarToolStripMenuItem = new ToolStripMenuItem();
+            panel1 = new Panel();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
-            // button1
+            // menuStrip1
             // 
-            button1.Location = new Point(12, 27);
-            button1.Name = "button1";
-            button1.Size = new Size(178, 75);
-            button1.TabIndex = 0;
-            button1.Text = "Crear";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            menuStrip1.Items.AddRange(new ToolStripItem[] { archivoToolStripMenuItem, alumnosToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(1433, 24);
+            menuStrip1.TabIndex = 3;
+            menuStrip1.Text = "menuStrip1";
             // 
-            // button2
+            // archivoToolStripMenuItem
             // 
-            button2.Location = new Point(12, 108);
-            button2.Name = "button2";
-            button2.Size = new Size(178, 75);
-            button2.TabIndex = 1;
-            button2.Text = "Listar";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            archivoToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { salirToolStripMenuItem });
+            archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
+            archivoToolStripMenuItem.Size = new Size(60, 20);
+            archivoToolStripMenuItem.Text = "Archivo";
             // 
-            // label1
+            // salirToolStripMenuItem
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(12, 9);
-            label1.Name = "label1";
-            label1.Size = new Size(55, 15);
-            label1.TabIndex = 2;
-            label1.Text = "Alumnos";
+            salirToolStripMenuItem.Name = "salirToolStripMenuItem";
+            salirToolStripMenuItem.Size = new Size(96, 22);
+            salirToolStripMenuItem.Text = "Salir";
+            // 
+            // alumnosToolStripMenuItem
+            // 
+            alumnosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { crearToolStripMenuItem, listarToolStripMenuItem });
+            alumnosToolStripMenuItem.Name = "alumnosToolStripMenuItem";
+            alumnosToolStripMenuItem.Size = new Size(67, 20);
+            alumnosToolStripMenuItem.Text = "Alumnos";
+            // 
+            // crearToolStripMenuItem
+            // 
+            crearToolStripMenuItem.Name = "crearToolStripMenuItem";
+            crearToolStripMenuItem.Size = new Size(180, 22);
+            crearToolStripMenuItem.Text = "Crear";
+            crearToolStripMenuItem.Click += crearToolStripMenuItem_Click;
+            // 
+            // listarToolStripMenuItem
+            // 
+            listarToolStripMenuItem.Name = "listarToolStripMenuItem";
+            listarToolStripMenuItem.Size = new Size(180, 22);
+            listarToolStripMenuItem.Text = "Listar";
+            listarToolStripMenuItem.Click += listarToolStripMenuItem_Click;
+            // 
+            // panel1
+            // 
+            panel1.Location = new Point(0, 27);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1433, 558);
+            panel1.TabIndex = 4;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(220, 205);
-            Controls.Add(label1);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            ClientSize = new Size(1433, 583);
+            Controls.Add(panel1);
+            Controls.Add(menuStrip1);
             FormBorderStyle = FormBorderStyle.Fixed3D;
+            MainMenuStrip = menuStrip1;
             Name = "Form1";
             Text = "Form1";
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Button button1;
-        private Button button2;
-        private Label label1;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem archivoToolStripMenuItem;
+        private ToolStripMenuItem salirToolStripMenuItem;
+        private ToolStripMenuItem alumnosToolStripMenuItem;
+        private ToolStripMenuItem crearToolStripMenuItem;
+        private ToolStripMenuItem listarToolStripMenuItem;
+        private Panel panel1;
     }
 }

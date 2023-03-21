@@ -23,6 +23,19 @@ namespace WinFormsApp1.Forms
         private void ListForm_Load(object sender, EventArgs e)
         {
             CargarDatosAlumnos();
+
+            // Agregar columna con botones de control
+            DataGridViewButtonColumn btnCol = new DataGridViewButtonColumn();
+            btnCol.HeaderText = "Acciones";
+            btnCol.Text = "Editar";
+            btnCol.UseColumnTextForButtonValue = true;
+            dataGridView1.Columns.Add(btnCol);
+
+            DataGridViewButtonColumn btnCol2 = new DataGridViewButtonColumn();
+            btnCol2.HeaderText = "";
+            btnCol2.Text = "Borrar";
+            btnCol2.UseColumnTextForButtonValue = true;
+            dataGridView1.Columns.Add(btnCol2);
         }
 
         private void CargarDatosAlumnos()
@@ -48,9 +61,5 @@ namespace WinFormsApp1.Forms
         }
 
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
     }
 }
