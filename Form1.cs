@@ -24,7 +24,7 @@ namespace WinFormsApp1
 
             // Establece las propiedades necesarias para que el formulario secundario se convierta en un control dentro del panel y se muestren los bordes
             formularioHijo.TopLevel = false;
-            formularioHijo.FormBorderStyle = FormBorderStyle.FixedSingle;
+            formularioHijo.FormBorderStyle = FormBorderStyle.None; // Cambia aquí la propiedad FormBorderStyle
             formularioHijo.Dock = DockStyle.None;
             formularioHijo.MaximizeBox = false; // Establece en "false" para evitar la opción de maximizar
             formularioHijo.MinimizeBox = false; // Establece en "false" para evitar la opción de minimizar

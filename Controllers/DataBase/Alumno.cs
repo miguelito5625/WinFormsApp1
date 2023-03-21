@@ -38,7 +38,7 @@ namespace WinFormsApp1.Controllers.DataBase
                         comando.ExecuteNonQuery();
                     }
                 }
-                mensaje = $"Alumno guardado: ID: Nombres: {nombres}, Apellidos: {apellidos}, Edad: {edad}";
+                mensaje = $"Alumno guardado: Nombres: {nombres}, Apellidos: {apellidos}, Edad: {edad}";
             }
             catch (SqlException ex)
             {
