@@ -16,6 +16,8 @@ namespace WinFormsApp1.Controllers.DataBase
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
         public int Edad { get; set; }
+        public string Grado { get; set; }
+
 
         public Alumno()
         {
@@ -48,16 +50,24 @@ namespace WinFormsApp1.Controllers.DataBase
         }
 
 
-        public List<Alumno> ListarAlumnos()
+        public List<Alumno> ListarAlumnos(string filtroGrado = "")
         {
             var listaAlumnos = new List<Alumno>();
             try
             {
                 using (var conexion = new ConexionBD().AbrirConexion())
                 {
-                    var query = "SELECT * FROM Alumnos";
+                    var query = "SELECT * FROM vista_alumnos_grados";
+                    if (!string.IsNullOrEmpty(filtroGrado))
+                    {
+                        query += " WHERE Grado = @Grado";
+                    }
                     using (var comando = new SqlCommand(query, conexion))
                     {
+                        if (!string.IsNullOrEmpty(filtroGrado))
+                        {
+                            comando.Parameters.AddWithValue("@Grado", filtroGrado);
+                        }
                         using (var reader = comando.ExecuteReader())
                         {
                             while (reader.Read())
@@ -67,7 +77,8 @@ namespace WinFormsApp1.Controllers.DataBase
                                     Id = Convert.ToInt32(reader["Id"]),
                                     Nombres = Convert.ToString(reader["Nombres"]),
                                     Apellidos = Convert.ToString(reader["Apellidos"]),
-                                    Edad = Convert.ToInt32(reader["Edad"])
+                                    Edad = Convert.ToInt32(reader["Edad"]),
+                                    Grado = Convert.ToString(reader["Grado"])
                                 };
                                 listaAlumnos.Add(alumno);
                             }
@@ -81,6 +92,7 @@ namespace WinFormsApp1.Controllers.DataBase
             }
             return listaAlumnos;
         }
+
 
 
 

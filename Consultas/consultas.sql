@@ -101,7 +101,7 @@ INNER JOIN grados ON alumnos_grados.id_grado = grados.id;
 
 
 CREATE VIEW vista_alumnos_grados AS
-SELECT alumnos.nombres, alumnos.apellidos, grados.nombre as grado
+SELECT alumnos.id, alumnos.nombres, alumnos.apellidos, alumnos.edad, grados.nombre as grado
 FROM alumnos
 INNER JOIN alumnos_grados ON alumnos.id = alumnos_grados.id_alumno
 INNER JOIN grados ON alumnos_grados.id_grado = grados.id;

@@ -16,6 +16,7 @@ namespace WinFormsApp1.Forms
         public ListForm()
         {
             InitializeComponent();
+            CargarDatosGrados();
             this.Load += ListForm_Load; // suscribirse al evento Load
 
         }
@@ -36,6 +37,16 @@ namespace WinFormsApp1.Forms
             btnCol2.Text = "Borrar";
             btnCol2.UseColumnTextForButtonValue = true;
             dataGridView1.Columns.Add(btnCol2);
+        }
+
+        private void CargarDatosGrados()
+        {
+            Grado grado = new Grado();
+            List<string> listaGrados = grado.ListarGrados();
+            foreach (string gradotxt in listaGrados)
+            {
+                comboBoxGrados.Items.Add(gradotxt);
+            }
         }
 
         private void CargarDatosAlumnos()
@@ -59,6 +70,21 @@ namespace WinFormsApp1.Forms
                 this.Close();
             }
         }
+
+        private void comboBoxGrados_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string gradoSeleccionado = comboBoxGrados.SelectedItem as string;
+            if (!string.IsNullOrEmpty(gradoSeleccionado))
+            {
+                var listaAlumnos = new Alumno().ListarAlumnos(gradoSeleccionado);
+                dataGridView1.DataSource = listaAlumnos;
+            }
+            else
+            {
+                CargarDatosAlumnos();
+            }
+        }
+
 
 
     }
